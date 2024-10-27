@@ -1,20 +1,20 @@
-section .data                         	; Define a seção de variáveis
-string db "This is fuckin assembly", 0	; Variável string com null terminator
-numbers dd 10, 20, 30, 40, 50          	; Array de números
+section .data                           ; Define the data section
+string db "This is f..... assembly", 0  ; String variable with null terminator
+numbers dd 10, 20, 30, 40, 50           ; Array of numbers
 
-section .text                         	; Define a seção de código
-global thisFunctionOnlyReturns42        ; Torna a função visível externamente, protótipo
+section .text                         	; Define the code section
+global thisFunctionOnlyReturns42        ; Makes the function visible externally, prototype
 global get_message                      
-global get_numbers 						
+global get_numbers
 
-thisFunctionOnlyReturns42:              ; Define o rótulo da função
-    mov rax, 42                         ; Move o valor 42 para o registrador RAX (valor de retorno)
-    ret                                 ; Retorno da função
+thisFunctionOnlyReturns42:              ; Define the label for the function
+    mov rax, 42                         ; Move the value 42 into the RAX register (return value)
+    ret                                 ; Return from the function
 
-get_message:                            ; Define uma função que retorna a string
-    mov rax, string                     ; Move o endereço da variável string para rax
-    ret                                 ; Retorno da função
+get_message:                            ; Define a function that returns the string
+    mov rax, string                     ; Move the address of the string variable into RAX
+    ret                                 ; Return from the function
 
-get_numbers:                            ; Define uma função que retorna a string
-    mov rax, numbers                  ; Move o endereço da variável(array) numbers para rax
-    ret        							; Retorno da função
+get_numbers:                            ; Define a function that returns the array
+    mov rax, numbers                    ; Move the address of the numbers array into RAX
+    ret                                 ; Return from the function
