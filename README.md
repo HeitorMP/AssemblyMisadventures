@@ -34,3 +34,6 @@ Any additional parameters get pushed on the stack.  OS X in 64 bit uses the same
 | short          | 16   | 2     | ax       | WORD [ptr]    | dw              |
 | int            | 32   | 4     | eax      | DWORD [ptr]   | dd              |
 | long           | 64   | 8     | rax      | QWORD [ptr]   | dq              |
+
+## Syscall
+https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
