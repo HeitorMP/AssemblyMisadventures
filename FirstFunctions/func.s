@@ -23,6 +23,9 @@ get_numbers:                            ; Define a function that returns the arr
     ret                                 ; Return from the function
 
 get_string_length:
+    test rdi, rdi                       ; Test if null
+    jz .print_null_string               ; Jump to the null handling code if ZF is set
+
     xor rax, rax                        ; 0 rax value
 
 .get_string_length_loop:                ; this loop for strng length
@@ -34,6 +37,9 @@ get_string_length:
 .get_string_length_end_loop:
     ret                                 ; Return from the function
 
+.print_null_string:
+    ret
+
 exit_code:
     mov rax, 60                         ; Define rax with syscall 60(exit status code)
     mov rdi, 1                          ; rdi value = 1;
@@ -41,6 +47,9 @@ exit_code:
     ret                                 ; never called becouse syscall
 
 print_string:
+
+    test rdi, rdi                       ; Test if null
+    jz .print_null_string1              ; Jump to the null handling code if ZF is set
 
     mov r8, rdi                         ; r8 now holds the pointer to the string
     mov r9, rsi                         ; r9 now holds lenght
@@ -53,3 +62,6 @@ print_string:
 
     syscall                             ; Make the syscall to write the string
     ret                                 ; Return from the function
+
+.print_null_string1:
+    ret
