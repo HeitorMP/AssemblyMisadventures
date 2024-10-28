@@ -14,20 +14,20 @@ ft_strcpy:
 	mov rax, rdi						; save rdi original pointer in rax(return);
 
 .loop:
-	mov al, byte [rsi]       			; Carrega um byte da origem (rsi) em al
-    mov byte [rdi], al       			; Armazena o byte atual no destino (rdi)
+	mov al, byte [rsi]       			; save 1 byte from rsi into al
+    mov byte [rdi], al       			; save 1 byte from al into rdi (swap using al as aux) - al is the 8 bits register inside rax
     
-    test al, al              			; Verifica se o byte atual é o terminador nulo
-    je .end_loop              			; Se al == 0, fim da string; sai do loop
+    test al, al              			; test if al byte is the null terminator
+    je .end_loop              			; if al == 0 goto to end_loop
 
-    inc rsi                  			; Avança para o próximo byte na origem
-    inc rdi                  			; Avança para o próximo byte no destino
-    jmp .loop            				; Repete o loop
+    inc rsi                  			; rsi++
+    inc rdi                  			; rdi++
+    jmp .loop            				; loop
 
 .end_loop:
-	mov byte [rdi], 0					;null terminator
+	mov byte [rdi], 0					; null terminator in rdi
 	ret
 
 .handle_error:
-	xor rax, rax                 		; Se o ponteiro de origem for nulo, retorna 0
+	xor rax, rax                 		; if src is null return 0;
     ret
