@@ -1,6 +1,6 @@
 # Compilers and options
 ASM 			= nasm
-CXX				= c++
+CC				= c++
 ASMFLAGS 		= -f elf64
 
 # NAMES and DIRS
@@ -10,10 +10,10 @@ SRCSDIR			= srcs
 OBJSDIR			= objs
 
 # Source and object files
-ASM_SRC 		= $(SRCSDIR)/ft_strlen.s $(SRCSDIR)/ft_strcpy.s
+ASM_SRC 		= $(SRCSDIR)/ft_strlen.s $(SRCSDIR)/ft_strcpy.s $(SRCSDIR)/ft_strcmp.s
 ASM_OBJ 		= $(ASM_SRC:$(SRCSDIR)/%.s=$(OBJSDIR)/%.o)
 
-TESTERSRC		= tester.cpp
+TESTERSRC		= tester.c
 
 # Rules
 all: $(NAME)
@@ -28,7 +28,7 @@ $(OBJSDIR):
 	mkdir -p $(OBJSDIR)
 
 tester:
-	$(CXX) $(TESTERSRC) $(NAME) -o $(TESTERNAME)
+	$(CC) $(TESTERSRC) $(NAME) -o $(TESTERNAME) -g
 
 clean:
 	rm -rf $(OBJSDIR)

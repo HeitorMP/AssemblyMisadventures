@@ -8,7 +8,7 @@ section .text
 global ft_strcpy
 
 ft_strcpy:
-	test rsi, rsi						; Test if parameter 1 is null;
+	test rsi, rsi						; Test if parameter 2 is null;
 	jz .handle_error					; Jump to handle error
 
 	mov rax, rdi						; save rdi original pointer in rax(return);
