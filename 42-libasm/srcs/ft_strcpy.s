@@ -1,8 +1,3 @@
-
-;	char		*ft_strcpy(char *dest, const char *src);
-;   rdi = dest
-;   rsi = src
-
 section .text
 
 global ft_strcpy
