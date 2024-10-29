@@ -12,5 +12,4 @@ ft_write:
     mov rax, 1                          ; syscall write
     syscall                             ; params already in order, calling syscall
 
-    mov rax, rdx                        ; moving size to return
     ret

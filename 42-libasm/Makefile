@@ -14,7 +14,9 @@ ASM_SRC 		= $(SRCSDIR)/ft_strlen.s \
 				  $(SRCSDIR)/ft_strcpy.s \
 				  $(SRCSDIR)/ft_strcmp.s \
 				  $(SRCSDIR)/ft_write.s  \
-				  $(SRCSDIR)/ft_read.s
+				  $(SRCSDIR)/ft_read.s   \
+				  $(SRCSDIR)/ft_strdup.s \
+
 
 ASM_OBJ 		= $(ASM_SRC:$(SRCSDIR)/%.s=$(OBJSDIR)/%.o)
 
