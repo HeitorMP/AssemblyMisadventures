@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <fcntl.h>
 #include "headers/libasm.h"
 
 int main() {
@@ -66,6 +67,17 @@ int main() {
     printf("-------------------------------------------------------\n");
     printf("My ft_strcmp: %i\n", ft_strcmp_result);
     printf("Original strcmp: %i\n", strcmp_origninal_result);
+
+
+    printf("=======================================================\n");
+    printf("                        FT_WRITE                       \n");
+    printf("=======================================================\n\n");    
+
+    int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    ft_write(fd, "Assembly", 8);
+    int a = ft_write(1, "Assembly", 8);
+    printf("%d\n", a);
+
 
     return 0;
 }

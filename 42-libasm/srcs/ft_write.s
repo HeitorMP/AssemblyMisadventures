@@ -4,19 +4,13 @@
 ;	rsi = buf
 ;	rdx = count
 
-sextion .text
+section .text
+    global ft_write
 
 ft_write:
 
-    mov r8, rdi                         ; r8 now holds the pointer to the string
-    mov r9, rsi                         ; r9 now holds lenght
-    
-    mov rax, 1                          ; rax to syscall write
+    mov rax, 1                         ; syscall write
+    syscall                             ; params already in order, calling syscall
 
-    mov rsi, r8                         ; rsi is now the pointer
-    mov rdx, r9
-
-    syscall                             ; Make the syscall to write the string
-
-	mov rax, rdx
-    ret                        
+    mov rax, rdx                        ; moving size to return
+    ret
