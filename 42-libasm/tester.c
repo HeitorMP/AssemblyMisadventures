@@ -75,8 +75,25 @@ int main() {
 
     int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
     ft_write(fd, "Assembly", 8);
-    int a = ft_write(1, "Assembly", 8);
-    printf("%d\n", a);
+    int a = ft_write(1, "Assembly", 2);
+    printf("\n");
+    int b = write(1, "Assembly", 2);
+    printf("\nft_write: %d\n", a);
+    printf("\nwrite: %d\n", b);
+
+
+    printf("=======================================================\n");
+    printf("                        FT_READ                        \n");
+    printf("=======================================================\n\n");    
+
+    char buf[20];
+    ft_write(1, "Type: ", 6);
+    int aa = ft_read(0, buf, 20);
+    // int aa = read(0, buf, 20);
+    printf("\n");
+    ft_write(1, "Buffer: ", 8);
+    ft_write(1, buf, 20);
+    printf("Bytes read: %d", aa);
 
 
     return 0;
