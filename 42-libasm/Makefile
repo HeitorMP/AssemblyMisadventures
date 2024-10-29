@@ -1,6 +1,6 @@
 # Compilers and options
 ASM 			= nasm
-CC				= c++
+CC				= cc
 ASMFLAGS 		= -f elf64
 
 # NAMES and DIRS
