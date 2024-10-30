@@ -188,20 +188,32 @@ int main() {
 
      t_list *head = NULL;
 
-    append(&head, "Primeiro");
-    append(&head, "Segundo");
-    append(&head, "Terceiro");
+    append(&head, "first");
+    append(&head, "second");
+    append(&head, "third");
+
+    printf("head address before: %p\n", head);
+
+    t_list *new_head = create_node("new first");
+    ft_list_push_front(&head, new_head);
+    printf("head address after: %p\n", head);
 
     long size = ft_list_size(head);
     printf("Size list: %ld\n", size);
 
     t_list *current = head;
     t_list *next_node;
+    int i = 0;
     while (current != NULL) {
+        printf("Node %d - %s\n", i, (char*)current->data);
         next_node = current->next;
         free(current);
         current = next_node;
+        i++;
     }
+
+
+
 
     return 0;
 }

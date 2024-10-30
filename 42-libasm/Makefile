@@ -18,6 +18,7 @@ ASM_SRC 		= $(SRCSDIR)/ft_strlen.s \
 				  $(SRCSDIR)/ft_read.s   \
 				  $(SRCSDIR)/ft_strdup.s \
 				  $(SRCSDIR)/ft_list_size_bonus.s \
+				  $(SRCSDIR)/ft_list_push_front_bonus.s \
 
 
 

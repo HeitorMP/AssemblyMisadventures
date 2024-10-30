@@ -11,7 +11,7 @@ ft_list_size:
     xor rax, rax            ; 0 to rax - it will be my counter
 
     test rdi, rdi           ; check if begin is null
-    jz .return            ; if the resulto of test is 0 go to return with rax 0
+    jz .return              ; if the resulto of test is 0 go to return with rax 0
 
     mov rsi, rdi            ; saving rdi in rsi, to not loose the original reference to the list in rdi
 
