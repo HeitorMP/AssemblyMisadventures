@@ -100,9 +100,9 @@ int main() {
     printf("=======================================================\n\n");  
 
 
-    char *src_strdup = "Asembly";
-
+    char *src_strdup = "Assembly";
     char *new_strdup = ft_strdup(src_strdup);
+
 
     printf("Original string %s: - address %p\n", src_strdup, src_strdup);
     printf("New string %s: -  address %p\n", new_strdup, new_strdup);

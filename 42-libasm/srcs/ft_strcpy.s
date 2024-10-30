@@ -20,7 +20,7 @@ ft_strcpy:
     jmp .loop            				; loop
 
 .end_loop:
-	mov byte [rdi], 0					; null terminator in rdi
+    mov rax, rdi
 	ret
 
 .handle_error:
