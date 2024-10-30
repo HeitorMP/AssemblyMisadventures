@@ -153,7 +153,7 @@ int main() {
     printf("=======================================================\n\n");  
 
 
-    char *src_strdup = "This is my string to be duplicated";
+    char *src_strdup = "test";
     char *new_strdup = ft_strdup(src_strdup);
 
 
