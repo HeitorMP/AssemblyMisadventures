@@ -5,6 +5,26 @@
 #include <stdlib.h>
 #include "headers/libasm.h"
 
+t_list *create_node(void *data) {
+    t_list *new_node = malloc(sizeof(t_list));
+    new_node->data = data;
+    new_node->next = NULL;
+    return new_node;
+}
+
+void append(t_list **head, void *data) {
+    t_list *new_node = create_node(data);
+    if (*head == NULL) {
+        *head = new_node;
+    } else {
+        t_list *current = *head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = new_node;
+    }
+}
+
 int main() {
     printf("=======================================================\n");
     printf("                        FT_STRLEN                      \n");
@@ -161,6 +181,27 @@ int main() {
     printf("New string: %s - address: %p\n", new_strdup, new_strdup);
 
     free(new_strdup);
+
+    printf("=======================================================\n");
+    printf("                        FT_LIST_SIZE                   \n");
+    printf("=======================================================\n\n");
+
+     t_list *head = NULL;
+
+    append(&head, "Primeiro");
+    append(&head, "Segundo");
+    append(&head, "Terceiro");
+
+    long size = ft_list_size(head);
+    printf("Size list: %ld\n", size);
+
+    t_list *current = head;
+    t_list *next_node;
+    while (current != NULL) {
+        next_node = current->next;
+        free(current);
+        current = next_node;
+    }
 
     return 0;
 }
