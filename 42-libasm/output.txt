@@ -1,1 +1,2 @@
-AssemblyAssembly
+This was insert by ft_write
+This was insert by original

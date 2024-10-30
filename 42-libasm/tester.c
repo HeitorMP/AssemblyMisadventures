@@ -78,9 +78,10 @@ int main() {
     int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
     // to file
-    int my_return = ft_write(fd, "Assembly", 8);
-    int original_return =  write(fd, "Assembly", 8);
+    int my_return = ft_write(fd, "This was insert by ft_write\n", 28);
+    int original_return =  write(fd, "This was insert by original\n", 28);
 
+    printf("Check output.txt\n");
     printf("my ft_write return: %d\n", my_return);
     printf("original write return: %d\n", original_return);
 
