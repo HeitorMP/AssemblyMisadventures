@@ -2,6 +2,7 @@
 ASM 			= nasm
 CC				= cc
 ASMFLAGS 		= -f elf64
+CFLAGS			= -Wall -Werror -Wextra
 
 # NAMES and DIRS
 NAME 			= libasm.a
@@ -35,7 +36,7 @@ $(OBJSDIR):
 	mkdir -p $(OBJSDIR)
 
 tester:
-	$(CC) $(TESTERSRC) $(NAME) -o $(TESTERNAME) -g
+	$(CC) $(CFLAGS) $(TESTERSRC) $(NAME) -o $(TESTERNAME) -g
 
 clean:
 	rm -rf $(OBJSDIR)
