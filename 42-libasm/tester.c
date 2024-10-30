@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 #include "headers/libasm.h"
 
 int main() {
@@ -74,38 +76,90 @@ int main() {
     printf("=======================================================\n\n");    
 
     int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    ft_write(fd, "Assembly", 8);
-    int a = ft_write(1, "Assembly", 2);
-    printf("\n");
-    int b = write(1, "Assembly", 2);
-    printf("\nft_write: %d\n", a);
-    printf("\nwrite: %d\n", b);
 
+    // to file
+    int my_return = ft_write(fd, "Assembly", 8);
+    int original_return =  write(fd, "Assembly", 8);
+
+    printf("my ft_write return: %d\n", my_return);
+    printf("original write return: %d\n", original_return);
+
+    // to stdout
+    my_return = ft_write(0, "Assembly", 2);
+    printf("\n");
+    original_return = write(0, "Assembly", 2);
+    printf("\n");
+    printf("my ft_write return: %d\n", my_return);
+    printf("original write return: %d\n", original_return);
+    
+    // erro invalid fd
+    my_return = ft_write(10, "Assembly", 2);
+    original_return = write(10, "Assembly", 2);
+    if (my_return == -1) {
+        perror("ft_write error");
+        printf("ft_write errno: %d\n", errno);
+    }
+    if (original_return == -1) {
+        perror("original write error");
+        printf("original write errno: %d\n", errno);
+    }
+    close(fd);
 
     printf("=======================================================\n");
     printf("                        FT_READ                        \n");
     printf("=======================================================\n\n");    
 
     char buf[20];
-    ft_write(1, "Type: ", 6);
-    int aa = ft_read(0, buf, 20);
-    // int aa = read(0, buf, 20);
-    printf("\n");
-    ft_write(1, "Buffer: ", 8);
-    ft_write(1, buf, 20);
-    printf("Bytes read: %d\n", aa);
+    bzero(buf, 20);
+    ft_write(1, "Type for ft_read: ", 18);
+    my_return = ft_read(0, buf, 20);
+    ft_write(1, "Type for original read: ", 24);
+    bzero(buf, 20);
+    original_return = read(0, buf, 20);
+    printf("my ft_read return: %d\n", my_return);
+    printf("original read return: %d\n", original_return);
+
+    // read from file
+    fd = open("output.txt", O_RDONLY);
+    char file_buf[20];
+    bzero(file_buf, 20);
+    my_return = ft_read(fd, file_buf, 20);
+    printf("my ft_read from file output.txt: %s\nbytes read: %d\n", file_buf, my_return);
+    bzero(file_buf, 20);
+    close(fd);
+    fd = open("output.txt", O_RDONLY);
+    original_return = read(fd, file_buf, 20);
+    printf("original read from file output.txt: %s\nbytes read: %d\n", file_buf, original_return);
+    close(fd);
+    // erro invalid fd
+
+    bzero(buf, 20);
+    my_return = ft_read(10, buf, 20);
+    bzero(buf, 20);
+    original_return = read(10, buf, 20);
+    if (my_return == -1) {
+        perror("ft_read error");
+        printf("ft_read errno: %d\n", errno);
+    }
+    if (original_return == -1) {
+        perror("original read error");
+        printf("original read errno: %d\n", errno);
+    }
+
 
     printf("=======================================================\n");
     printf("                        FT_STRDUP                      \n");
     printf("=======================================================\n\n");  
 
 
-    char *src_strdup = "Assembly";
+    char *src_strdup = "This is my string to be duplicated";
     char *new_strdup = ft_strdup(src_strdup);
 
 
-    printf("Original string %s: - address %p\n", src_strdup, src_strdup);
-    printf("New string %s: -  address %p\n", new_strdup, new_strdup);
+    printf("Original string: %s - address: %p\n", src_strdup, src_strdup);
+    printf("New string: %s - address: %p\n", new_strdup, new_strdup);
+
+    free(new_strdup);
 
     return 0;
 }
